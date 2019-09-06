@@ -1,0 +1,112 @@
+\documentclass[a4paper]{article}
+
+  \usepackage{fullpage} % Package to use full page
+  \usepackage{parskip} % Package to tweak paragraph skipping
+  \usepackage{tikz} % Package for drawing
+  \usepackage{amsmath}
+  \usepackage{amsfonts}
+  \usepackage{amssymb}
+  \usepackage{hyperref}
+  \usepackage[utf8]{inputenc}
+  \usepackage[english]{babel}
+  \usepackage{multicol}
+  \usepackage{mathtools}
+  
+  \newcommand\tab[1][0.5cm]{\hspace*{#1}}
+  \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+  \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+  
+  \title{Discrete Mathematics: HW9}
+  \author{Adrian Darian}
+  \date{2018/12/05}
+  
+  \begin{document}
+  
+  \maketitle
+
+  \section*{5.1 Mathematical Induction}
+  \begin{itemize}
+    \item[8] Prove that $2 - 2 \dot 7 + 2 \dot 7^{2} - \dots + 2(-7)^{n} = \frac{(1 - (-7)^{n + 1})}{4}$ whenever $n$ is a nonnegative integer. \\
+    \tab $P(n) := 2 - 2 \dot 7 + 2 \dot 7^{2} - 2 \dot 7^{3} + \dots + 2 \dot (-7)^{n} = \frac{(1 - (-7)^{n + 1})}{4}$ \\
+    \tab For $n = 0, \frac{(1 - (-7)^{0 + 1})}{4} = 2$ \\
+    \tab For $n = k + 1, \frac{(1 - (-7)^{k + 1})}{4} + 2(-7)^{k + 1} = \frac{(1 - (-7)^{k + 2})}{4}$
+    \item[16] Prove that for every positive integer $n$, $1 \dot 2 \dot 3 + 2 \dot 3 \dot 4 + \dots + n(n + 1)(n + 2) = \frac{n(n + 1)(n + 2)(n + 3)}{4}$. \\
+    \tab $P(n): 1 \dot 2 \dot 3 + 2 \dot 3 \dot 4 + \dots + n(n + 1)(n + 2) = \frac{n(n + 1)(n + 2)(n + 3)}{4}$ \\
+    \tab $1 \dot 2 \dot 3 + 2 \dot 3 \dot 4 + \dots + n(n + 1)(n + 2) = \sum_{i = 1}^{n} i(i + 1)(i + 2)$ \\
+    \tab For $n = 1, 1 \dot 2 \dot 3 = 6, \frac{1(1 + 1)(1 + 2)(1 + 3)}{4} = \frac{1 \dot 2 \dot 3 \dot 4}{4} = 6$ \\
+    \tab $\sum_{i = 1}^{k + 1} i(i + 1)(i + 2) = 1 \dot 2 \dot 3 + 2 \dot 3 \dot 4 + \dots + k(k + 1)(k + 2) + (k + 1)(k + 2)(k + 3) = \frac{(k + 1)(k + 2)(k + 3)(k + 4)}{4}$ \\
+    \tab $\therefore P(n): 1 \dot 2 \dot 3 + 2 \dot 3 \dot 4 + \dots + n(n + 1)(n + 2) = \frac{n(n + 1)(n + 2)(n + 3)}{4}$
+    \item[20] Prove that $3^{n} < n!$ if $n$ is an integer greater than $6$. \\
+    \tab $P(n): 3^{n} < n!$ \\
+    \tab For $n = 7, 3^{7} = 2187$ and $7! = 5040$ \\
+    \tab $3^{k} < k!, k > 6$ \\
+    \tab $P(k + 1) = 3^{k + 1} = (k + 1)!$
+  \end{itemize}
+
+  \section*{5.2 Strong Induction and Well-Ordering}
+  \begin{itemize}
+    \item[6] 
+      a. Determine which amounts of postage can be formed using just $3$-cent and $10$-cent stamps. \\
+      \tab Objective is to determine the amounts of postage can be formed using just $3$ cents and $10$ cents stamps. \\
+      \tab The amounts of postages that be formed using just $3$ - cent and $10$ - cent stamps are $3, 6, 9, 10, 12, 13, 15, 16$ and all values greater than or equal to $18$ \\
+      b. Prove your answer to (a) using the principle of mathematical induction. Be sure to state explicitly your inductive hypothesis in the inductive step. \\
+      \tab $19 = 3 + 3 + 3 + 10$ is true \\
+      c. Prove your answer to (a) using strong induction. How does the inductive hypothesis in this proof differ from that in the inductive hypothesis for a proof using mathematical induction? \\
+      \tab $19 = 3 + 3 + 3 + 10$ is true \\
+      \tab $23 = 10 + 10 + 3$
+    \item[12] Use strong induction to show that every positive integer $n$ can be written as a sum of distinct powers of two, that is, as a sum of a subset of the integers $2^{0} = 1, 2^{1} = 2, 2^{2} = 4$, and so on. [Hint: For the inductive step, separately consider the case where $k + 1$ is even and where it is odd. When it is even note that $(k + 1)/2$ is an integer.] \\
+    \tab  
+    \item[32] Find the flaw with the following "proof" that every postage of three cents or more can be formed using just three-cent and four-cent stamps. \\
+    \tab Basis Step: We can form postage of three cents with a single three-cent stamp and we can form postage of four cents using a single four-cent stamp. \\
+    \tab Inductive Step: Assume that we can form postage of $j$ cents for all nonnegative integers $j$ with $j \leq k$ using just three-cent and four-cent stamps. We can then form postage of $k + 1$ cents by replacing one three-cent stamp with a four-cent stamp or by replacing two four-cent stamps by three three-cent stamps.
+  \end{itemize}
+
+  \section*{5.3 Recursive Definitions and Structural Induction}
+  \begin{itemize}
+    \item[4] Find $f(2), f(3), f(4)$, and $f(5)$ if $f$ is defined recursively by $f(0) = f(1) = 1$ and for $n = 1, 2, \dots$ \\
+      c. $f(n + 1) = f(n)^{2} + f(n - 1)^{3}$ \\
+      \tab $f(2) = f(1)^{2} + f(0)^{3}$ \\
+      \tab $1^{2} + 1^{3} = 2$ \\
+      \tab $f(3) = f(2)^{2} + f(1)^{3}$ \\
+      \tab $2^{2} + 1^{3} = 5$ \\
+      \tab $f(4) = f(3)^{2} + f(2)^{3}$ \\
+      \tab $5^{2} + 2^{3} = 33$ \\
+      \tab $f(5) = f(4)^{2} + f(3)^{3}$ \\
+      \tab $33^{2} + 5^{3} = 1214$ \\ 
+      d. $f(n + 1) = \frac{f(n)}{f(n - 1)}$ \\
+      \tab $f(2) = 1$ \\
+      \tab $f(3) = 1$ \\
+      \tab $f(4) = 1$ \\
+      \tab $f(5) = 1$
+    \item[8] Give a recursive definition of the sequence $\{a_{n}\}, n = 1, 2, 3, \dots$ if \\
+      c. $a_{n} = 10^{n}$ \\
+      \tab $a_{n} = n(n + 1) = n^{2} + n$ \\
+      \tab $a_{n + 1} = n^{2} + 3n + 2 = a_{n} + 2(n + 1)$ \\
+      d. $a_{n} = 5$ \\
+      \tab $a_{n + 1} = (n + 1)^{2} = a_{n} + 2n + 1$ 
+    \item[14] Show that $f_{n + 1}f_{n - 1} - f_{n}^{2} = (-1)^{n}$ when $n$ is a positive integer. \\
+    \tab $f_{k + 1}f_{k - 1} - f_{k}^{2} = (-1)^{k}$ \\
+    \tab $f_{(k + 1) + 1}f_{(k + 1) - 1} - f_{k + 1}^{2} = f_{k + 2}f_{k} - f_{k + 1}^{2}$ \\
+    \tab $= (-1)^{k + 1} \therefore P(k + 1)$ is true.
+    \item[26] Let S be the subset of the set of ordered pairs of integers defined recursively by \\
+    \tab Basis Step: $(0, 0) \in S$ \\
+    \tab Recursive Step: If $(a, b) \in S$, then $(a + 2, b + 3) \in S$ and $(a + 3, b + 2) \in S$. \\
+      a. List the elements of $S$ produced by the first five applications of the recursive definition. \\
+      \tab $(2,3),(3,2) \in S$ \\
+      \tab $(4,6),(5,5),(6,4) \in S$ \\
+      \tab $(6,9),(7,8),(8,7),(9,6) \in S$ \\
+      \tab $(8,12),(9,11),(10,10),(11,9),(12,8) \in S$ \\
+      \tab $(10,15),(11,14),(12,13),(13,12),(14,11),(15,10) \in S$
+      b. Use strong induction on the number of applications of the recursive step of the definition to show that $5 | a + b$ when $(a, b) \in S$. \\
+      \tab $n = 0, a_{0} = 0, b_{0} = 0, 5 | 0 + 0$ and $(0, 0) \in S, (a_{0}, b_{0}) \in S$ \\
+      \tab $(a_{0} + 2) + (b_{0} + 3) = 0 + 2 + 0 + 3 = 5$ \\
+      \tab $(a_{0} + 3, b_{0} + 2), (a_{0} + 2, b_{0} + 3) \in S$ \\
+      c. Use structural induction to show that $5 | a + b$ when $(a, b) \in S$. \\
+      \tab $(a, b) \in S, 5|(a + b)$ \\
+      \tab $(a + 2) + (b + 3) = 5(m + 1), (a + 3) + (b + 2) = 5(m + 1)$ \\
+      \tab $(a + 2, b + 3), (a + 3, b + 2) \in S$
+  \end{itemize}
+ 
+
+  
+  \end{document}
