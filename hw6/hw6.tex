@@ -1,0 +1,214 @@
+\documentclass[a4paper]{article}
+
+  \usepackage{fullpage} % Package to use full page
+  \usepackage{parskip} % Package to tweak paragraph skipping
+  \usepackage{tikz} % Package for drawing
+  \usepackage{amsmath}
+  \usepackage{amsfonts}
+  \usepackage{amssymb}
+  \usepackage{hyperref}
+  \usepackage[utf8]{inputenc}
+  \usepackage[english]{babel}
+  \usepackage{multicol}
+  
+  \newcommand\tab[1][0.5cm]{\hspace*{#1}}
+  
+  \title{Discrete Mathematics: HW3}
+  \author{Adrian Darian}
+  \date{2018/9/21}
+  
+  \begin{document}
+  
+  \maketitle
+  
+  \section*{2.5 Cardinality of Sets}
+  \begin{itemize}
+    \item[2] Determine whether each of these sets is finite, countably infinite, or uncountable. For those that are countably infinite, exhibit a one-to-one correspondence between the set of positive integers and that set. \\
+      a. the integers greater than $10$ \\
+      \tab $X_n = 10 + n$ \\
+      \tab $X_1 = 10 + n = 11$ \\
+      \tab $X_2 = 10 + 2 = 12$ \\
+      \tab $\therefore$ the set greater than $10$ are a countable infinite \\
+      b. the odd negative integers \\
+      \tab $X_n = -(2n - 1)$ \\
+      \tab $X_1 = -(2(1) - 1)$ \\
+      \tab $\therefore$ the set of negative odd integers are a countable infinite \\
+      c. the integers with absolute value less than $1,000,000$ \\
+      \tab $-999,999 \Leftrightarrow 999,999$ \\
+      \tab $\therefore$ the set is finite \\
+      d. the real numbers between $0$ and $2$ \\
+      \tab the integers between $0$ and $2$ are uncountable
+    \item[4] Determine whether each of these sets is countable or uncountable. For those that are countably infinite, exhibit a one-to-one correspondence between the set of positive integers and that set. \\
+      a. integers not divisible by $3$ \\ 
+      \tab $f(n) = \left\{\begin{matrix}
+        3n + 1,$ if $n$ is even$ \\
+        3n + 2,$ if $n$ is odd$ \\
+      \end{matrix}\right.$ \\
+      \tab $\therefore$ this set is not countable \\
+      b. integers divisible by $5$ but not by $7$ \\
+      \tab $0 \rightarrow 5$ \\
+      \tab $1 \rightarrow -5$ \\
+      \tab $2 \rightarrow 10$ \\
+      \tab $3 \rightarrow -10$ \\
+      \tab $4 \rightarrow 15$ \\
+      \tab $5 \rightarrow -15$ \\
+      \tab $\tab \vdots$ \\
+      \tab $\therefore$ the set is countable \\
+      c. the real numbers with decimal representations consisting of all $1s$ \\
+      \tab $\overline{1} = 0.111 \cdots$ \\
+      \tab $A = \{b.\overline{1}|b \in []\}$ \\
+      \tab $[] \rightarrow A$ \\
+      \tab $\therefore$ the set is countable \\
+      d. the real numbers with decimal representations of all $1s$ or $9s$ \\
+      \tab $M = \{$ real numbers with decimal representations of all $1$s or $9$s$\}$ \\
+      \tab $\left\{\begin{matrix}
+        1$ if $(i - 1)th = 9 \\
+        9$ if $(i - 1)th = 1 \\
+      \end{matrix}\right.$ \\
+      \tab $\therefore$ the set is countable
+    \item[12] Show that if $A$ and $B$ are sets and $A \subset B$ then $|A| \leq |B|$. \\
+    \tab $x \in A$ since $A \subset B$ \\
+    \tab $\therefore x \in B$ \\
+    \tab which means $A \leq B$ when $A \subset B$ 
+    \item[16] Show that a subset of a countable set is also countable. \\
+    \tab $X$ is a countable set and $Y$ is a subset to $X$ \\
+    \tab $x_1, x_2, x_3, \cdots, x_n, \cdots$ \\
+    \tab $\therefore$ Y is countable if we list out all the elements of Y in the sequence
+    \item[20] Show that if $|A|=|B|$ and $|B|=|C|$, then $|A|=|C|$. \\
+    \tab $x \in X, y \in Y, z \in Z$ \\
+    \tab $|X| = |Y|$ and $|Y| = |Z|$ \\
+    \tab $\therefore f: X \rightarrow Y$ and $g: Y \rightarrow Z$ are bijections \\
+    \tab $y \in Y$ such $g(y) = z$ and $x \in X$ such $f(x) = y$ \\
+    \tab $g \circ f(x) = g(f(x)) = g(y) = z$ \\
+    \tab $z \in Z, g \circ f(x) = z, x \in X$ \\
+    \tab $g \circ f: X \rightarrow Z$ \\
+    \tab $x = y \Rightarrow f(x) = f(y)$ \\
+    \tab $y = z \Rightarrow f(y) = f(z)$ \\
+    \tab $g \circ (f(x)) = g \circ (f(y)) = g \circ (f(z))$ \\
+    \tab $g \circ f: X \rightarrow Z$ is one-to-one \\
+    \tab $g \circ f: X \rightarrow Z$ is a bijection \\
+    \tab $\therefore |X = |Y$ and $|Y = |Z|,$ then $ |X| = |Z|$
+  \end{itemize}
+  
+  \section*{2.6 Matrices}
+  \begin{itemize}
+    \item[14] The $n x n$ matrix $A = [a_{ij}]$ is called a diagonal matrix if $a_{ij} = 0$ when $i \neq j$. Show that the product of two $n x n$ diagonal matrices is again a diagonal matrix. Give a simple rule for determining this product. \\
+    \tab $A = \left[\begin{matrix}
+      1 & 0 & 0 & 0 \\
+      0 & 1 & 0 & 0 \\
+      0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 2 \\
+    \end{matrix}\right]$ \\
+    \tab $AB = [0, \cdots, 0, a_{ii}, 0, \cdots, 0] \dot [0, \cdots, 0, b_{jj}, 0, \cdots, 0]$ if $j \neq i$ \\
+    \tab $0 \dot 0 + \cdots + a_{ii} \dot 0 + \cdots + 0 \dot b_{jj} + 0 \dot 0 = 0$ \\
+    \tab $\therefore a_{ii}$ and $b_{ij}$ do not multiply so $AB = 0$ and $AB$ is then a diagonal 
+    \item[22] Let $A$ be a matrix. Show that the matrix $AA^t$ is symmetric. \\
+    \tab $(AA^t)^t = (A^t)^t A^t$ \\
+    \tab $(AB)^t = B^t A^t$ \\
+    \tab $(A^t)^t = A$ \\
+    \tab $(AA^t)^t = AA^t$ \\
+    \tab $\therefore AA^t$ is a symmetric matrix
+    \item[28] Find the Boolean product of $A$ and $B$, where $A =
+    \left[\begin{matrix}
+      1 & 0 & 0 & 1 \\
+      0 & 1 & 0 & 1 \\
+      1 & 1 & 1 & 1 \\
+    \end{matrix}\right]$ and $B = 
+    \left[\begin{matrix}
+      1 & 0 \\
+      0 & 1 \\
+      1 & 1 \\
+      1 & 0
+    \end{matrix}\right]$ \\
+    \tab $A[] B = \left[\begin{matrix}
+      1 & 0 & 0 & 1 \\
+      0 & 1 & 0 & 1 \\
+      1 & 1 & 1 & 1 \\
+    \end{matrix}\right] [] \left[\begin{matrix}
+      1 & 0 \\
+      0 & 1 \\
+      1 & 1 \\
+      1 & 0 \\
+    \end{matrix}\right]$ \\
+    \tab $A[] B = \left[\begin{matrix}
+      1 \vee 0 \vee 0 \vee 1 & 0 \vee 0 \vee 0 \vee 0 \\
+      0 \vee 0 \vee 0 \vee 1 & 0 \vee 1 \vee 0 \vee 0 \\
+      1 \vee 0 \vee 1 \vee 1 & 0 \vee 1 \vee 1 \vee 0 \\
+    \end{matrix}\right]$ \\
+    \tab $A[] B = \left[\begin{matrix}
+      1 & 0 \\
+      1 & 1 \\
+      1 & 1 \\
+    \end{matrix}\right]$
+    \item[30] Let $A$ be a zero–one matrix. Show that \\
+      a. $A \vee A = A$ \\
+      \tab $A \vee A = [0] \vee [0]$ \\
+      \tab $A \vee A = [0 \vee 0]$ \\
+      \tab $A \vee A = [0]$ \\
+      \tab $\therefore A \vee A = A$ \\
+      b. $A \wedge A = A$ \\
+      \tab $A \wedge A = [0] \wedge [0]$ \\
+      \tab $A \wedge A = [0 \wedge 0]$ \\
+      \tab $A \wedge A = [0]$ \\
+      \tab $\therefore A \wedge A = A$
+  \end{itemize}
+
+  \section*{3.1 Algorithms}
+  \begin{itemize}
+    \item[6] Describe an algorithm that takes a input as a list of $n$ integers and finds the number of negative integers in the list. \\
+    \tab $P = 0$ \\
+    \tab if $X = 0$ \\
+    \tab\tab return $0$ \\
+    \tab if $N = 0$ \\
+    \tab\tab return $1$ \\
+    \tab for $i = 0$ to $|N|$ \\
+    \tab\tab $P = P x X$ \\
+    \tab\tab if $n < 0$ \\
+    \tab\tab\tab return $\frac{1}{P}$ \\
+    \tab\tab return $P$
+    \item[10] Devise an algorithm to compute $x^n$, where $x$ is a real number and $n$ is an integer. \\
+    \tab for $i = 0$ to $N$ \\
+    \tab\tab if $N < 0$ \\
+    \tab\tab\tab $k = k * \frac{1}{X}$ \\
+    \tab\tab $P = P * X$
+    \item[36] Use the bubble sort to sort $d, f, k, m, a, b$, showing the lists obtained at each step. \\
+    \tab $bubblesort(a_1, \cdots, a_n:$ real numbers with $n \geq 2)$ \\
+    \tab\tab for $i = 1$ to $n - 1$ \\
+    \tab\tab\tab for $j = 1$ to $n - i$ \\
+    \tab\tab\tab\tab if $a_j > a_{j + 1}$ then swap $a_j$ and $a_{j + 1}$ 
+    \item[40] Use the insertion sort to sort the list in Exercise $36$, showing the lists obtained at each step. \\
+    \tab $insertionsort(a_1, \cdots, a_n:$ real numbers with $n \geq 2)$ \\
+    \tab\tab for $j = 2$ to $n$ \\
+    \tab\tab\tab $i = 1$ \\
+    \tab\tab\tab while $a_j > a_i$ \\
+    \tab\tab\tab\tab $i = i + 1$ \\
+    \tab\tab\tab $m = a_j$ \\
+    \tab\tab\tab for $k = 0$ to $j - i - 1$ \\
+    \tab\tab\tab\tab $a_{j - k} = a_{j - k - 1}$ \\
+    \tab\tab\tab $a_i = m$
+    \item[52] Use the greedy algorithm to make change using quarters, dimes, nickels, and pennies for \\
+      a. $87$ cents. \\
+      \tab 3 quarters, 1 dime, 2 pennies \\
+      b. $49$ cents. \\
+      \tab 1 quarter, 2 dimes, 4 pennies \\
+      c. $99$ cents. \\
+      \tab 3 quarters, 2 dimes, 4 pennies \\
+      d. $33$ cents.
+      \tab 1 quarter, 1 nickel, 3 pennies
+    \item[54] Use the greedy algorithm to make change using quarters, dimes, and pennies (but no nickels) for each of the amounts given in Exercise $52$. For which of these amounts does the greedy algorithm use the fewest coins of these denominations possible? \\
+      a. $87$ cents. \\
+      \tab 3 quarters, 1 dime, 2 pennies \\
+      b. $49$ cents. \\
+      \tab 1 quarter, 2 dimes, 4 pennies \\
+      c. $99$ cents. \\
+      \tab 3 quarters, 2 dimes, 4 pennies \\
+      d. $33$ cents.
+      \tab 1 quarter, 8 pennies
+    \item[56] Show that if there were a coin worth $12$ cents, the greedy algorithm using quarters, $12$-cent coins, dimes, nickels, and pennies would not always produce change using the fewest coins possible. \\
+    \tab 15 cents = 12 cent coin, 3 pennies \\
+    \tab better solution would be to use a nickel and a dime 
+  \end{itemize}
+ 
+
+  
+  \end{document}
