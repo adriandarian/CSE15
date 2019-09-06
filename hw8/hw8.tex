@@ -1,0 +1,173 @@
+\documentclass[a4paper]{article}
+
+  \usepackage{fullpage} % Package to use full page
+  \usepackage{parskip} % Package to tweak paragraph skipping
+  \usepackage{tikz} % Package for drawing
+  \usepackage{amsmath}
+  \usepackage{amsfonts}
+  \usepackage{amssymb}
+  \usepackage{hyperref}
+  \usepackage[utf8]{inputenc}
+  \usepackage[english]{babel}
+  \usepackage{multicol}
+  \usepackage{mathtools}
+  
+  \newcommand\tab[1][0.5cm]{\hspace*{#1}}
+  \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+  \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+  
+  \title{Discrete Mathematics: HW8}
+  \author{Adrian Darian}
+  \date{2018/11/29}
+  
+  \begin{document}
+  
+  \maketitle
+
+  \section*{4.1 Divisibility and Modular Arithmetic}
+  \begin{itemize}
+    \item[8] Prove or disprove that if $a | bc$, where $a$, $b$, and $c$ are positive integers and $a \neq 0$, then $a | b$ or $a | c$. \\
+    \tab $a | bc$ where $a, b, c$ are positive integers \\
+    \tab $8 | 40 \Rightarrow 8 | 4 x 10$ but neither $8 | 4$ nor $8 | 10$ \\
+    \tab $\therefore a | bc$ implies $a | b$ or $a | c$
+    \item[14] Suppose that $a$ and $b$ are integers, $a \equiv 11 (mod 19)$, and $b \equiv 3 (mod 19)$. Find the integer $c$ with $0 \leq c \leq 18$ such that \\
+      a. $c \equiv 13a (mod 19)$ \\
+      \tab $c (mod 19) = 13a (mod 19)$ \\
+      \tab $c (mod 19) = 13(11 (mod 19))(mod 19)$ \\
+      \tab $c (mod 19) = (143 (mod 19))(mod 19)$ \\
+      \tab $c (mod 19) = 10 (mod 19)$ \\
+      \tab $\therefore c = 10$ \\
+      e. $c \equiv 2a^{2} + 3b^{2} (mod 19)$ \\
+      \tab $c (mod 19) = 2a^{2} + 3b^{2} (mod 19)$ \\
+      \tab $c (mod 19) = [2(11 (mod 19))(11 (mod 19)) + 3(3 (mod 19))(3 (mod 19))](mod 19)$ \\
+      \tab $c (mod 19) = (242 (mod 19) + 27 (mod 19))(mod 19)$ \\
+      \tab $c (mod 19) = (269 (mod 19))(mod 19)$ \\
+      \tab $c (mod 19) = 3 (mod 19)$ \\
+      \tab $\therefore c = 3$
+    \item[26] List five integers that are congruent to $4$ modulo $12$. \\
+    \tab $(a + b)(mod m) = (a (mod m) + b(mod m))(mod m)$ \\
+    \tab $(a x b)(mod m) = (a (mod m) x b (mod m))(mod m)$ \\
+    \tab $4 (mod 12) = 0 + 4 (mod 12)$ \\
+    \tab $4 (mod 12) = 12 (mod 12) + 4 (mod 12)$ \\
+    \tab $4 (mod 12) = 16 (mod 12)$ \\
+    \tab $4 (mod 12) = 28 (mod 12)$ \\
+    \tab $4 (mod 12) = 40 (mod 12)$ \\
+    \tab $4 (mod 12) = 52 (mod 12)$ \\
+    \tab $4 (mod 12) = 64 (mod 12)$ \\
+    \tab $\therefore 4 (mod 12) = 16, 28, 40, 52, 64$
+    \item[34] Show that if $a \equiv b (mod m)$ and $c \equiv d (mod m)$, where $a$, $b$, $c$, $d$, and $m$ are integers with $m \geq 2$, then $a - c \equiv b - d (mod m)$. \\
+    \tab $a = b + km$ \\
+    \tab $a - c = b - d (mod m)$ \\
+    \tab $a \equiv b (mod m)$ and $c \equiv d (mod m)$ \\
+    \tab $\therefore a = b + mk_{1}$ and $c = d + mk_{2}$ \\
+    \tab $a - c = (b + mk_{1}) - (d + mk_{2})$ \\
+    \tab $a - c = b + mk_{1} - d - mk_{2}$ \\
+    \tab $a - c = b - d + m(k_{1} - k_{2})$ \\
+    \tab $a - c = b - d + mk$ \\
+    \tab $\therefore a - c = b - d (mod m)$
+  \end{itemize}
+
+  \section*{4.2 Integer Representations and Algorithms}
+  \begin{itemize}
+    \item[24] Find the sum and product of each of these pairs of numbers. Express your answers as a base $3$ expansion. \\
+      b. $(20CBA)_{16}$, $(A01)_{16}$ \\
+      \begin{tabular}{cccccc}
+          & 2 & 0 & C & B & A \\
+        + &   &   & A & 0 & 2 \\
+        \hline
+          & 2 & 1 & 6 & B & B 
+      \end{tabular} \\
+      \begin{tabular}{ccccccccccc}
+          &   &   &   & 2 & 0 & C & B & A \\
+          &   &   & x &   &   & A & 0 & 1 \\
+        \hline
+          &   &   &   & 2 & 0 & C & B & A \\
+          &   &   & 0 & 0 & 0 & 0 & 0 &   \\
+        + & 1 & 4 & 7 & F & 4 & 4 &   &   \\
+        \hline
+          & 1 & 4 & 8 & 1 & 5 & 0 & B & A
+      \end{tabular}
+    \item[28] Use Algorithm $5$ to find $123^{1001} mod 101$ \\
+    \tab $(1001)_{10} = (1111101001)_{2}$ \\
+    \tab $\therefore 123^{1001} mod 101 = 22$ 
+    \item[30] It can be shown that every integer can be uniquely represented in the form $e_{k}3^{k} + e_{k - 1}3^{k - 1} + \dots + e_{1}3 + e_{0}$, where $e_{j} = -1, 0$, or $1$ for $j = 0, 1, 2, \dots , k$. Expansions of this type are called balanced ternary expansions. Find the balanced ternary expansions of \\
+      b. $13$. \\
+      \tab $13 = 3(4) + 1$ \\
+      \tab $4 = 3(1) + 1$ \\
+      \tab $1 = 3(0) + 1$ \\
+      \tab $(13)_{10} = (111)_{3}$ \\
+      \tab\begin{tabular}{cccc}
+          & 1 & 1 & 1 \\
+        + & 1 & 1 & 1 \\
+        \hline
+          & 2 & 2 & 2 
+      \end{tabular} \\
+      \tab $\therefore (1)3^{2} + (1)3 + (1)$
+  \end{itemize}
+
+  \section*{4.3 Primes and Greatest Common Divisors}
+  \begin{itemize}
+    \item[4] Find the prime factorization of each of these integers. \\
+      c. $101$ \\
+      \tab $101 = 101 x 1$ \\
+      \tab $\therefore 101 = 101$ \\
+      e. $289$ \\
+      \tab $289 = 17 x 17$ \\
+      \tab $\therefore 289 = 17^{2}$
+    \item[16] Determine whether the integers in each of these sets are pairwise relatively prime. \\
+      b. $14, 17, 85$ \\
+      \tab $gcd(14, 17) = 1$ \\
+      \tab $gcd(17, 85) = 17$ \\
+      \tab $gcd(14, 85) = 1$ \\
+      \tab $\therefore$ the set is not a pairwise relatively prime set. \\
+      d. $17, 18, 19, 23$ \\
+      \tab $gcd(17, 18) = 1$ \\
+      \tab $gcd(17, 19) = 1$ \\
+      \tab $gcd(17, 23) = 1$ \\
+      \tab $gcd(18, 19) = 1$ \\
+      \tab $gcd(18, 23) = 1$ \\
+      \tab $gcd(19, 23) = 1$ \\
+      \tab $\therefore$ the set is a pairwise relatively prime set. \\
+    \item[24] What are the greatest common divisors of these pairs of integers? \\
+      c. $17, 17^{17}$ \\
+      \tab $gcd(17, 17^{17}) = 17$ \\
+      d. $2^{2} \dot 7, 5^{3} \dot 13$ \\
+      \tab $gcd(2^{2} \dot 7, 5^{3} \dot 13) = 1$ \\
+      e. $0, 5$ \\
+      \tab $gcd(0, 5) = 5$ \\
+      f. $2 \dot 3 \dot 5 \dot 7, 2 \dot 3 \dot 5 \dot 7$ \\
+      \tab $gcd(2 \dot 3 \dot 5 \dot 7, 2 \dot 3 \dot 5 \dot 7) = 2 \dot 3 \dot 5 \dot 7$
+    \item[26] What is the least common multiple of each pair in Exercise $24$? \\
+      c. $17, 17^{17}$ \\
+      \tab $lcm(17, 17^{17}) = 17^{17}$ \\
+      d. $2^{2} \dot 7, 5^{3} \dot 13$ \\
+      \tab $lcm(2^{2} \dot 7, 5^{3} \dot 13) = 2^{2} \dot 5^{3} \dot 7 \dot 13$ \\
+      e. $0, 5$ \\
+      \tab $lcm(0, 5) = undefined$ \\
+      f. $2 \dot 3 \dot 5 \dot 7, 2 \dot 3 \dot 5 \dot 7$ \\
+      \tab $lcm(2 \dot 3 \dot 5 \dot 7, 2 \dot 3 \dot 5 \dot 7) = 2 \dot 3 \dot 5 \dot 7$
+    \item[30] If the product of two integers is $2^{7}3^{8}5^{2}7^{11}$ and their greatest common divisor is $2^{3}3^{4}5$, what is their least common multiple? \\
+    \tab $gcd(a, b) = 2^{3}3^{4}5$ \\
+    \tab $a \dot b = 2^{7}3^{8}5^{2}7^{11}$ \\
+    \tab $ab = gcd(a, b) \dot lcm(a, b)$ \\
+    \tab $\therefore lcm(a, b) = 2^{4}3^{4}5^{1}7^{11}$
+    \item[32] Use the Euclidean algorithm to find \\
+      a. $gcd(1, 5)$ \\
+      \tab $gcd(1, 5) = 1$ \\
+      b. $gcd(100, 101)$ \\
+      \tab $gcd(100, 101) = 1$ \\
+      e. $gcd(1529, 14038)$ \\
+      \tab $gcd(1529, 14038) = 1$ \\
+      f. $gcd(11111, 111111)$ \\
+      \tab $gcd(11111, 111111) = 1$
+    \item[54] Adapt the proof in the text that there are infinitely many primes to prove that there are infinitely many primes of the form $3k + 2$, where $k$ is a nonnegative integer. [Hint: Suppose that there are only finitely many such primes $q_{1}, q_{2}, \dots , q_{n}$, and consider the number $3q_{1}q_{2} \dots q_{n} - 1$.] \\
+    \tab $3k + 2 = (3k + 3) -1$ \\
+    \tab $3k + 2 = 3(k + 1) - 1$ \\
+    \tab $3(k + 1) = p_{1}p_{2}p_{3}, \cdots, p_{n}$ \\
+    \tab $3k + 2 = p_{1}p_{2}p_{3}, \cdots, p_{n} - 1$ \\
+    \tab $\therefore$ there are infinitely many primes of the form $3k + 2$ 
+  \end{itemize}
+ 
+
+  
+  \end{document}
