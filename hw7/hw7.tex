@@ -1,0 +1,150 @@
+\documentclass[a4paper]{article}
+
+  \usepackage{fullpage} % Package to use full page
+  \usepackage{parskip} % Package to tweak paragraph skipping
+  \usepackage{tikz} % Package for drawing
+  \usepackage{amsmath}
+  \usepackage{amsfonts}
+  \usepackage{amssymb}
+  \usepackage{hyperref}
+  \usepackage[utf8]{inputenc}
+  \usepackage[english]{babel}
+  \usepackage{multicol}
+  \usepackage{mathtools}
+  
+  \newcommand\tab[1][0.5cm]{\hspace*{#1}}
+  \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+  \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+  
+  \title{Discrete Mathematics: HW7}
+  \author{Adrian Darian}
+  \date{2018/11/8}
+  
+  \begin{document}
+  
+  \maketitle
+  
+  \section*{3.2 The Growth of Functions}
+  \begin{itemize}
+    \item[2] Determine whether each of these functions is $O(x^2)$ \\
+      b. $f(x) = x^2 + 1000$ \\
+      \tab $f(n^2 + 1)$ \\
+      \tab $\therefore f(x) = x^2 + 1000$ is $O(x^2)$ \\
+      d. $f(x) = \frac{x^4}{2}$ \\
+      \tab $f(x) = \frac{x^4}{2}$ \\
+      \tab $f(x) = \frac{1}{2}(x^2 \cdot x^2)$
+      \tab $f(x) \geq \frac{1}{2}(x \cdot x),\ x^2 \geq x$ \\
+      \tab $f(x) = \frac{1}{2}x^2$ \\
+      \tab $\therefore f(x) = \frac{x^4}{2}$ is not $O(x^2)$ \\
+      f. $f(x) = \floor{x} \cdot \ceil{x}$ \\
+      \tab $f(x) \leq x \cdot (x + 1),\ x - 1 < \floor{x} \leq x,\ x \leq \ceil{x} < x + 1$ \\
+      \tab $f(x) = x^2 + x$ \\
+      \tab $f(x) \leq x^2 + x^2,\ x^2 \geq x$ \\
+      \tab $f(x) = 2x^2,\ x \geq 1$ \\
+      \tab $\therefore f(x) = \floor{x} \cdot \ceil{x}$ is $O(x^2)$
+    \item[6] Show that $\frac{(x^3 + 2x)}{2x + 1}$ is $O(x^2)$. \\
+    \tab $f(x) = (\frac{1}{2}x^2 - \frac{1}{4}x + \frac{9}{8}) - \frac{\frac{9}{8}}{2x + 1}$ \\
+    \tab $|f(x)| = |(\frac{1}{2}x^2 - \frac{1}{4}x + \frac{9}{8}) - \frac{\frac{9}{8}}{2x + 1}|$ \\
+    \tab $|f(x)| \leq |\frac{1}{2}x^2 - \frac{1}{4}x + \frac{9}{8}$ \\
+    \tab $|f(x)| \leq |\frac{1}{2}x^2 + \frac{9}{8}|$ \\
+    \tab $|f(x)| = \frac{1}{2}x^2 + \frac{9}{8}$ \\
+    \tab $|f(x)| < \frac{1}{2}x^2 + x^2$ \\
+    \tab $|f(x)| = \frac{3}{2}|x^2|$ \\
+    \tab $\therefore$ it is $O(x^2)$
+    \item[8] Find the least integer n such that $f(x)$ is $O(x^n)$ for each of these functions. \\
+      a. $f(x) = 2x^2 + x^{3}\ log\ x$ \\
+      \tab $log\ x \leq x$ \\
+      \tab $x^{3}\ log\ x \leq x^{3} \cdot x$ \\
+      \tab $2x^{2} + x^{3}\ log\ x \leq 2x^{4} + x^{4} = 3x^{4}$ \\
+      \tab $\therefore f(x) \leq 3x^{4},\ x > 1$ \\
+      d. $f(x) = \frac{(x^4 + 5\ log\ x)}{(x^4 + 1)}$ \\
+      \tab $f(x) = \frac{x^{3}}{(x^{4} + 1)} + \frac{5\ log\ x}{(x^{4} + 1)}$ \\
+      \tab $\frac{x^3}{x^4 + 1} < \frac{x^3}{x^4}$ and $\frac{5\ log\ x}{x^4 + 1} < \frac{5x}{x^4 + 1}$ \\
+      \tab $\therefore f(x) = \frac{x^3}{x^4 + 1} + \frac{5\ log\ x}{x^4 + 1} < x^{-1} + 1 < x$
+    \item[12] Show that $x\ log\ x$ is $O(x^2)$ but that $x^2$ is not $O(x\ log\ x)$. \\
+    \tab $x\ log\ x \leq x(x) = x^2$ \\
+    \tab $x\ log\ x \leq x^{2},\ x > e$ \\
+    \tab $x\ log\ x \in O(x^2)$ \\
+    \tab $x \leq C\ log\ x$ \\
+    \tab $\frac{x}{log\ x} \leq C,\ x > k$ \\
+    \tab $x^2 \notin O(x\ log\ x)$ 
+    \item[18] Let $k$ be a positive integer. Show that $1^k + 2^k + \cdots + n^k$ is $O(n^{k+1})$. \\
+    \tab $|1^k + 2^k + \cdots + n^k| = 1^k + 2^k + \cdots + n^k \leq n^k + n^k + \cdots + n^{k}\ (n$ times$)$ \\
+    \tab $|1^k + 2^k + \cdots + n^k| \leq n \cdot n^k = n^{k + 1} = |n^{k + 1}|$ \\
+    \tab $|1^k + 2^k + \cdots + n^k| \leq 1 \cdot |n^{k + 1}|$ \\
+    \tab $\therefore 1^k + 2^k + \cdots + n^k$ is $O(n^{k + 1})$
+    \item[20] Determine whether each of the functions $log(n + 1)$ and $log(n^2 + 1)$ is $O(log\ n)$. \\
+    \tab $log(n + 1) < log(2n - 1)$ \\
+    \tab $log(n + 1) < log(n^2)$ \\
+    \tab $n^2 > 2n - 1 \Leftrightarrow (n - 1)^2 > 0$ \\
+    \tab $log(n + 1) = 2log\ n$ \\
+    \tab $\therefore log(n + 1)$ is $O(log\ n)$ \\
+    \tab $log(n^2 + 1) < log(2n^2 - 1)$ \\
+    \tab $log(n^2 + 1) < log(n^4)$ \\
+    \tab $log(n^2 + 1) = 4log\ n$ \\
+    \tab $log(n^2 + 1) \leq Olog\ n$ \\
+    \tab $\therefore log(n^2 + 1)$ is $O(log\ n)$
+    \item[22] Arrange the function $(1.5)^{n},\ n^{100},\ (log\ n)^{3},\ \sqrt{n}\ log\ n,\ 10^{n},\ (n!)^{2},\ and\ n^{99} + n^{98}$ in a list so that each function is big-$O$ of the next function. \\
+    \tab $(log\ n)^{3},\ \sqrt{n}\ log\ n,\ n^{99} + n^{98},\ n^{100},\ (1.5)^{n},\ 10^{n},\ (n!)^{2}$
+  \end{itemize}
+
+  \section*{3.3 Complexity of Algorithms}
+  \begin{itemize}
+    \item[2] Give a big-$O$ estimate for the number additions used in this segment of an algorithm \\
+    \tab $t := 0$ \\
+    \tab for $i := 1$ to $n$ \\
+    \tab\tab for $j := 1$ to $n$ \\
+    \tab\tab\tab $t := t + i + j$ \\
+    \tab $\therefore O(n^2)$
+    \item[4] Give a big-$O$ estimate for the number of operations, where an operation is an addition or a multiplication, used in this segment of an algorithm (ignoring comparisions used to test the conditions in the while loop).
+    \tab $i := 1$ \\
+    \tab $t := 0$ \\
+    \tab while $i \leq n$ \\
+    \tab\tab $t := t + i$ \\
+    \tab\tab $i := 2i$ \\
+    \tab $\therefore O(log\ n)$
+    \item[8] Given a real number $x$ and a positive integer $k$, determine the number of multiplications used to find $x^{2^{k}}$ starting with $x$ and successively squaring (to find $x^{2}, x^{4}$, and so on). Is this a more efficient way to find $x^{2^{k}}$ than by multiplying $x$ by itself the appropriate number of times? \\
+    \tab $x^{2^{k}} = \frac{x^2 \cdot x^2 \cdot x^2 \cdots \cdot x^2}{k\ times}$
+    \item[18] How much time does an algorithm take to solve a problem of size $n$ if this algorithm uses $2n^{2} + 2^{n}$ operations, each requiring $10^{-9}$ seconds, with these values of n? \\
+      a. $10$ \\
+      \tab $[2(10)^2 + 2^{10}] x 10^{-9} = [2(100) + 1024] x 10^{-9}$ \\
+      \tab\tab\tab $= (200 + 1024) x 10^{-9}$ \\
+      \tab\tab\tab $= 1224 x 10^{-9}$ \\
+      \tab\tab\tab $\therefore 1.224 x 10^{-6}$ sec \\
+      b. $20$ \\
+      \tab $[2(20)^2 + 2^{20}] x 10^{-9} = [2(400) + 1048576] x 10^{-9}$ \\
+      \tab\tab\tab $= (800 + 1048576) x 10^{-9}$ \\
+      \tab\tab\tab $= 1049376 x 10^{-9}$ \\
+      \tab\tab\tab $\therefore 1.05 x 10^{-3}$ sec \\
+      c. $50$ \\
+      \tab $[2(50)^2 + 2^{50}] x 10^{-9} = [2(2500) + 1125899906842624] x 10^{-9}$ \\
+      \tab\tab\tab $= (5000 + 1125899906842624) x 10^{-9}$ \\
+      \tab\tab\tab $= 1125899906847624 x 10^{-9}$ \\
+      \tab\tab\tab $\therefore 1.13 x 10^{6}$ sec \\
+      d. $100$ \\
+      \tab $[2(100)^2 + 2^{100}] x 10^{-9} = [2(10000) + 1.267 x 10^{30}] x 10^{-9}$ \\
+      \tab\tab\tab $= (20000 + 1.267 x 10^{30}) x 10^{-9}$ \\
+      \tab\tab\tab $= 1.267 x 10^{30} x 10^{-9}$ \\
+      \tab\tab\tab $\therefore 1.27 x 10^{21}$ sec
+    \item[20] What is the effect in the time required to solve a problem when you double the size of the input from $n$ to $2n$, assuming that the number of milliseconds the algorithm uses to solve the problem with input size $n$ is each of these function? [Express your answer in the simplest form possible, either as a ratio or a difference. Your answer may be a function of $n$ or a constant]. \\
+      a. $log log n$ \\
+      \tab $f(n) = log(log\ 2n)$ \\
+      \tab $f(2n) = log(log\ 2n) = log(log\ n + log\ 2)$ \\
+      c. $100n$ \\
+      \tab $f(n) = 100n$ \\
+      \tab $f(2n) = 100(2n) = 2(100n)$ \\
+      e. $n^{2}$ \\
+      \tab $f(n) = n^{2}$ \\
+      \tab $f(2n) = (2n)^{2} = 4n^{2}$ \\
+      g. $2^{n}$ \\
+      \tab $f(n) = 2^{n}$ \\
+      \tab $f(2n) = 2^{2n} = (2^{n})^{2}$ 
+    \item[22] Determine the least number of comparisons, or best-case performance, \\
+      a. required to find the maximum or a sequence of $n$ integers, using Algorithm $1$ of section $3.1$ \\
+      b. used to locate an element in a list of $n$ terms using a linear search. \\
+      c. used to locate an element in a list of $n$ terms using a binary search.
+  \end{itemize}
+ 
+
+  
+  \end{document}
